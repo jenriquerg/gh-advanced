@@ -1,0 +1,43 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form>
+    <div class="p-field">
+      <label for="email">Correo electrónico</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        pInputText
+        placeholder="Ingresa tu correo"
+      />
+    </div>
+
+    <div class="p-field">
+      <label for="password">Contraseña</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        pPassword
+        feedback="false"
+        placeholder="Ingresa tu contraseña"
+      />
+    </div>
+
+    <div class="p-field">
+      <label for="rememberMe">Código MFA</label>
+      <input
+        id="rememberMe"
+        name="rememberMe"
+        type="text"
+        pInputText
+        placeholder="Ingresa tu código"
+      />
+    </div>
+
+    <a [routerLink]="['/register']" class="p-mt-2">
+      ¿No tienes cuenta? Regístrate
+    </a>
+    <p-button label="Iniciar Sesión"></p-button>
+  </form>
+</div>

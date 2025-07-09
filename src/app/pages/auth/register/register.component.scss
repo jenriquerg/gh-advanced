@@ -1,0 +1,33 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap : 1.2rem;
+}
+
+.p-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.p-field label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 14px;
+  color: #ffffff;
+}
