@@ -25,9 +25,21 @@ form {
   width: 100%;
 }
 
-.p-field label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  font-size: 14px;
-  color: #ffffff;
+.qr {
+  margin-top: 1rem;
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+p-password .p-password-input {
+    width: 440px;
 }

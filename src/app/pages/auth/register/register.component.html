@@ -1,36 +1,101 @@
 <div class="register-container">
+  <p-toast></p-toast>
   <h2>Registro</h2>
-  <form>
-    <div class="p-field">
+  <form (ngSubmit)="onSubmit()">
+    <p-iftalabel class="p-field">
       <label for="nombre">Nombre</label>
-      <input id="nombre" name="nombre" type="text" pInputText placeholder="Ingresa tu nombre" />
-    </div>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        pInputText
+        [(ngModel)]="nombre"
+        required
+      />
+    </p-iftalabel>
 
-    <div class="p-field">
+    <p-iftalabel class="p-field">
       <label for="apellidos">Apellidos</label>
-      <input id="apellidos" name="apellidos" type="text" pInputText placeholder="Ingresa tus apellidos" />
-    </div>
+      <input
+        id="apellidos"
+        name="apellidos"
+        type="text"
+        pInputText
+        [(ngModel)]="apellidos"
+        required
+      />
+    </p-iftalabel>
 
-    <div class="p-field">
-      <label for="fechaNacimiento">Fecha de nacimiento</label>
-      <input id="fechaNacimiento" name="fechaNacimiento" type="date" pInputText placeholder="Ingresa tu fecha de nacimiento" />
-    </div>
-
-    <div class="p-field">
-      <label for="genero">Género</label>
-      <input id="genero" name="genero" type="text" pInputText placeholder="Ingresa tu género" />
-    </div>
-
-    <div class="p-field">
+    <p-iftalabel class="p-field">
       <label for="correo">Correo electrónico</label>
-      <input id="correo" name="correo" type="email" pInputText placeholder="correo@ejemplo.com" />
-    </div>
+      <input
+        id="correo"
+        name="correo"
+        type="email"
+        pInputText
+        [(ngModel)]="correo"
+        required
+      />
+    </p-iftalabel>
 
-    <div class="p-field">
-      <label for="password">Contraseña</label>
-      <p-password name="password" promptLabel="Ingresa tu contraseña" weakLabel="Muy simple" mediumLabel="Simple" strongLabel="Fuerte" />
-    </div>
+    <p-iftalabel class="p-field">
+      <p-password
+        name="password"
+        [(ngModel)]="password"
+        required
+        promptLabel="Ingresa tu contraseña"
+        feedback="true"
+        [style]="{ width: '100%' }"
+        [inputStyle]="{ width: '100%' }"
+        [toggleMask]="true"
+        weakLabel="Muy vulnerable" 
+         mediumLabel="Vulnerable" 
+         strongLabel="Fuerte"
+      ></p-password>
+      <label for="password">Password</label>
+    </p-iftalabel>
 
-    <p-button label="Registrarme" icon="pi pi-user-plus"></p-button>
+    <p-iftalabel class="p-field">
+      <label for="genero">Género</label>
+      <select
+        id="genero"
+        name="genero"
+        [(ngModel)]="genero"
+        required
+        class="p-inputtext p-component"
+      >
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="otro">Otro</option>
+      </select>
+    </p-iftalabel>
+
+
+    <p-iftalabel class="p-field">
+      <label for="fechaNacimiento">Fecha de nacimiento</label>
+      <input
+        id="fechaNacimiento"
+        name="fechaNacimiento"
+        type="date"
+        pInputText
+        [(ngModel)]="fecha_nacimiento"
+        required
+      />
+    </p-iftalabel>
+
+    <a style="color: white; text-decoration: none;" href="/login"> ¿Ya tienes una cuenta? Inicia sesión</a>
+ 
+    <p-button
+      label="Registrarme"
+      icon="pi pi-user-plus"
+      type="submit"
+      [disabled]="loading"
+    ></p-button>
+
+    <div class="qr-container" *ngIf="qrDataUrl" style="margin-top: 2rem">
+      <h4>Escanea este QR con tu app de autenticación:</h4>
+      <img class="qr" [src]="qrDataUrl" alt="QR MFA" />
+    </div>
   </form>
 </div>
