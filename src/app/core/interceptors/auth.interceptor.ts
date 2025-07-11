@@ -11,7 +11,6 @@ export const authInterceptor: HttpInterceptorFn = (
   const router = inject(Router);
   const token = localStorage.getItem('access_token');
 
-  // Clonar request e inyectar token
   const authReq = token
     ? req.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`),
