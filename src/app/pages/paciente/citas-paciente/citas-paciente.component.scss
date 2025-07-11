@@ -1,0 +1,50 @@
+.citas-paciente-container {
+  padding: 1.5rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .estado {
+    font-weight: bold;
+    text-transform: capitalize;
+
+    &.pendiente {
+      color: #f59e0b;
+    }
+
+    &.completada {
+      color: #10b981;
+    }
+
+    &.cancelada {
+      color: #ef4444;
+    }
+  }
+
+  .p-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .dialog{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .p-inputtext{
+    width: 100%;
+  }
+  .p-component{
+    width: 100%;
+  }
+
+}

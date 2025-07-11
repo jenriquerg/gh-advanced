@@ -1,1 +1,79 @@
-<p>citas-enfermero works!</p>
+<p-toast></p-toast>
+
+<div class="enfermero-container">
+  <h2>Bienvenido Enfermero</h2>
+  <h3 style="text-align: center">Buscar Citas por Médico</h3>
+
+  <div class="busqueda">
+    <label for="medicoId">ID Médico</label>
+    <input
+      id="medicoId"
+      type="number"
+      pInputText
+      [(ngModel)]="medicoId"
+      placeholder="Ej. 11"
+      min="1"
+    />
+    <p-button
+      label="Enviar"
+      icon="pi pi-search"
+      (click)="cargarCitas()"
+      class="p-button-primary"
+    ></p-button>
+    <p-button
+      label="Cerrar Sesión"
+      icon="pi pi-sign-out"
+      class="p-button-text"
+      type="button"
+      (click)="onCerrarSesion()"
+    ></p-button>
+  </div>
+
+  <p-table
+    [value]="citas"
+    [paginator]="true"
+    [rows]="5"
+    responsiveLayout="scroll"
+    *ngIf="citas.length > 0"
+    (onRowSelect)="onCitaSelect($event)"
+    selectionMode="single"
+    [(selection)]="selectedCita"
+    dataKey="id"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Especialidad</th>
+        <th>Consultorio</th>
+        <th>Estado</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cita>
+      <tr [pSelectableRow]="cita">
+        <td>{{ cita.horario | date : "shortDate" }}</td>
+        <td>{{ cita.horario | date : "shortTime" }}</td>
+        <td>{{ cita.tipo }}</td>
+        <td>{{ cita.id_consultorio }}</td>
+        <td>
+          <span class="estado pendiente">Pendiente</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="selectedCita" class="acciones-cita" style="margin-top: 1rem">
+    <p-button
+      label="Ver expediente"
+      icon="pi pi-folder-open"
+      (click)="verExpediente()"
+      class="p-button-secondary"
+    ></p-button>
+    <p-button
+      label="Llenar control"
+      icon="pi pi-file-edit"
+      (click)="irALlenarControl(selectedCita.id_paciente)"
+      class="p-button-primary"
+    ></p-button>
+  </div>
+</div>

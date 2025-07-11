@@ -7,11 +7,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../../core/services/auth.service';
-
+import { TokenService } from '../../../core/services/token.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputTextModule, PasswordModule, ButtonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -23,9 +29,14 @@ export class LoginComponent {
   loading = false;
   error = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
 
   onSubmit() {
+    console.log(this.correo, this.password, this.totp_code);
     this.loading = true;
     this.error = '';
 
@@ -37,8 +48,11 @@ export class LoginComponent {
       })
       .subscribe({
         next: (res) => {
-          const tipo = this.decodeToken(res.data[0].access_token)?.tipo;
-
+          console.log(res);
+          const tipo = this.tokenService.decodeToken(
+            res.data[0].access_token
+          )?.tipo;
+          console.log(tipo);
           if (tipo === 'paciente') {
             this.router.navigate(['/citas-paciente']);
           } else if (tipo === 'enfermero') {
@@ -56,14 +70,5 @@ export class LoginComponent {
           this.loading = false;
         },
       });
-  }
-
-  decodeToken(token: string): any {
-    try {
-      const payload = token.split('.')[1];
-      return JSON.parse(atob(payload));
-    } catch (e) {
-      return null;
-    }
   }
 }

@@ -1,0 +1,223 @@
+<p-toast></p-toast>
+
+<div class="llenar-control-container">
+  <h2>Controles del paciente</h2>
+
+  <p-table
+    [value]="controles"
+    [paginator]="true"
+    [rows]="5"
+    responsiveLayout="scroll"
+    *ngIf="controles.length"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Fecha</th>
+        <th>Peso</th>
+        <th>Altura</th>
+        <th>IMC</th>
+        <th>Temp (°C)</th>
+        <th>Glucosa</th>
+        <th>Sat. O₂</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-ctrl>
+      <tr>
+        <td>{{ ctrl.fecha }}</td>
+        <td>{{ ctrl.peso_kg }} kg</td>
+        <td>{{ ctrl.altura_cm }} cm</td>
+        <td>{{ ctrl.imc }}</td>
+        <td>{{ ctrl.temperatura_c }}°</td>
+        <td>{{ ctrl.nivel_glucosa }}</td>
+        <td>{{ ctrl.saturacion_oxigeno }}%</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="actions">
+    <p-button
+      label="Nuevo control"
+      icon="pi pi-plus"
+      (click)="showDialog = true"
+      styleClass="p-button-success"
+    ></p-button>
+    <p-button
+      label="Regresar"
+      icon="pi pi-times"
+      class="p-button-text"
+      type="button"
+      (click)="gotoBack()"
+    ></p-button>
+    <p-button
+      label="Cerrar Sesión"
+      icon="pi pi-sign-out"
+      class="p-button-text"
+      type="button"
+      (click)="onCerrarSesion()"
+    ></p-button>
+  </div>
+
+  <p-dialog
+    class="dialog"
+    header="Nuevo control del paciente"
+    [(visible)]="showDialog"
+    [modal]="true"
+    [style]="{ width: '600px' }"
+    [baseZIndex]="10000"
+    [closable]="false"
+  >
+    <form class="p-fluid" (ngSubmit)="guardarControl()">
+      <div class="p-formgrid p-grid" style="gap: 1rem">
+        <p-iftalabel class="p-field p-col-6">
+          <label for="peso">Peso (kg)</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.peso_kg"
+            class="p-inputtext p-component"
+            name="peso_kg"
+            id="peso"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="altura">Altura (cm)</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.altura_cm"
+            class="p-inputtext p-component"
+            name="altura_cm"
+            id="altura"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="imc">IMC</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.imc"
+            class="p-inputtext p-component"
+            name="imc"
+            id="imc"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="presion">Presión Arterial</label>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="control.presion_arterial"
+            class="p-inputtext p-component"
+            name="presion_arterial"
+            id="presion"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="fc">Frecuencia Cardiaca</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.frecuencia_cardiaca"
+            class="p-inputtext p-component"
+            name="frecuencia_cardiaca"
+            id="fc"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="fr">Frecuencia Respiratoria</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.frecuencia_respiratoria"
+            class="p-inputtext p-component"
+            name="frecuencia_respiratoria"
+            id="fr"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="temp">Temperatura (°C)</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.temperatura_c"
+            class="p-inputtext p-component"
+            name="temperatura_c"
+            id="temp"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="glucosa">Glucosa (mg/dL)</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.nivel_glucosa"
+            class="p-inputtext p-component"
+            name="nivel_glucosa"
+            id="glucosa"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="sato2">Saturación de Oxígeno (%)</label>
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="control.saturacion_oxigeno"
+            class="p-inputtext p-component"
+            name="saturacion_oxigeno"
+            id="sato2"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-6">
+          <label for="fecha">Fecha</label>
+          <input
+            type="date"
+            pInputText
+            [(ngModel)]="control.fecha"
+            name="fecha"
+            id="fecha"
+            class="p-inputtext p-component"
+          />
+        </p-iftalabel>
+
+        <p-iftalabel class="p-field p-col-12">
+          <label for="notas">Notas Generales</label>
+          <textarea
+            pInputTextarea
+            rows="3"
+            [(ngModel)]="control.notas_generales"
+            class="p-inputtext p-component"
+            name="notas_generales"
+            id="notas"
+          ></textarea>
+        </p-iftalabel>
+      </div>
+
+      <!-- Botones -->
+      <div class="buttons">
+        <p-button
+          label="Guardar"
+          icon="pi pi-check"
+          class="p-button-primary"
+          type="submit"
+        ></p-button>
+
+        <p-button
+          label="Cancelar"
+          icon="pi pi-times"
+          class="p-button-text"
+          type="button"
+          (click)="showDialog = false"
+        ></p-button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

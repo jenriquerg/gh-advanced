@@ -42,6 +42,7 @@ Esto compilará tu proyecto y almacenará los artefactos de compilación en el d
 Para más información sobre el uso de Angular CLI, incluyendo referencias detalladas de comandos, visita la página Angular CLI Overview and Command Reference.
 
 ## Estructura
+
 src/
  └── app/
       ├── pages/
@@ -49,10 +50,32 @@ src/
       │         ├── login/
       │         │    ├── login.component.ts
       │         │    ├── login.component.html
-      │         │    └── login.component.css
+      │         │    └── login.component.scss
       │         └── register/
-      │              ├── register.component.ts
-      │              ├── register.component.html
-      │              └── register.component.css
+      │         │    ├── register.component.ts
+      │         │    ├── register.component.html
+      │         │    └── register.component.scss
+      │         └──control/
+      │            └── llenar-control/
+      │         │        ├── llenar-control.component.ts
+      │         │        ├── llenar-control.component.html
+      │         │        ├── llenar-control.component.scss
+      │         └──enfermero/
+      │            └── citas-enfermero/
+      │         │        ├── citas-enfermero.component.ts
+      │         │        ├── citas-enfermero.component.html
+      │         │        └── citas-enfermero.component.scss
+      │         └──expediente/
+      │            └── expediente/
+      │         │        ├── expediente.component.ts
+      │         │        ├── expediente.component.html
+      │         │        └── expediente.component.scss
+      │         └──paciente/
+      │            └── citas-paciente/
+      │         │        ├── citas-paciente.component.ts
+      │         │        ├── citas-paciente.component.html
+      │         │        └── citas-paciente.component.scss
       ├── app.module.ts
       └── app.component.ts
+
+

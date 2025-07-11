@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface LoginRequest {
   correo: string;
@@ -45,7 +46,7 @@ interface RegisterResponse {
 export class AuthService {
   private API_URL = 'http://127.0.0.1:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
     return this.http
@@ -65,5 +66,11 @@ export class AuthService {
       `${this.API_URL}/auth/register`,
       data
     );
+  }
+
+  logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    this.router.navigate(['/login']);
   }
 }

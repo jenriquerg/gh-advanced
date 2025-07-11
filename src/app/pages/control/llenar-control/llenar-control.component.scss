@@ -1,0 +1,29 @@
+.p-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .dialog{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .p-inputtext{
+    width: 100%;
+  }
+  .p-component{
+    width: 100%;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .actions{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
