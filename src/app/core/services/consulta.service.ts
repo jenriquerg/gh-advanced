@@ -39,4 +39,11 @@ export class ConsultaService {
       .pipe(map(res => res.data));
   }
 
+  updateConsulta(id: number, payload: Partial<Consulta>): Observable<Consulta> {
+  return this.http
+    .put<{ data: Consulta }>(`${this.baseUrl}/${id}`, payload)
+    .pipe(map(res => res.data));
+}
+
+
 }

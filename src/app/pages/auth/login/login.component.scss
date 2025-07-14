@@ -8,6 +8,7 @@
   padding: 2rem;
   border: 1px solid #333;
   border-radius: 10px;
+  background-color: #333;
 }
 
 form {
@@ -32,3 +33,23 @@ form {
   color: #ffffff;
 }
 
+input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: #eee;
+  background-color: #222;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p-password {
+  background-color: #222;
+  border-radius: 5px;
+  color : #eee;
+}
+
+.dialog{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #222;
+}

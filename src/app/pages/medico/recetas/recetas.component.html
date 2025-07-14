@@ -1,0 +1,57 @@
+<p-toast></p-toast>
+
+<div class="receta-container">
+  <h2>Registrar Receta Médica</h2>
+
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="medicamento">Medicamento</label>
+      <input
+        id="medicamento"
+        type="text"
+        pInputText
+        [(ngModel)]="receta.medicamento"
+        placeholder="Nombre del medicamento"
+      />
+    </div>
+
+    <div class="p-field">
+      <label for="dosis">Dosis</label>
+      <input
+        id="dosis"
+        type="text"
+        pInputText
+        [(ngModel)]="receta.dosis"
+        placeholder="Dosis indicada"
+      />
+    </div>
+
+    <div class="p-field">
+      <label for="fecha">Fecha</label>
+      <input
+        id="fecha"
+        type="date"
+        pInputText
+        [(ngModel)]="receta.fecha"
+        disabled
+      />
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button
+      pButton
+      label="Guardar receta"
+      icon="pi pi-check"
+      (click)="guardarReceta()"
+      class="mr-2"
+    ></button>
+    <button
+      pButton
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-secondary"
+      (click)="regresar()"
+    ></button>
+  </div>
+</div>

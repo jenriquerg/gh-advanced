@@ -1,0 +1,192 @@
+<p-toast></p-toast>
+
+<div class="citas-medico-container">
+  <h2>Citas del Médico</h2>
+
+  <p-table
+    [value]="citas"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    responsiveLayout="scroll"
+    sortField="horario"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="paciente">
+          Paciente <p-sortIcon field="paciente"></p-sortIcon>
+        </th>
+        <th pSortableColumn="tipo">
+          Tipo <p-sortIcon field="tipo"></p-sortIcon>
+        </th>
+        <th pSortableColumn="horario">
+          Horario <p-sortIcon field="horario"></p-sortIcon>
+        </th>
+        <th>Diagnóstico</th>
+        <th pSortableColumn="costo">
+          Costo <p-sortIcon field="costo"></p-sortIcon>
+        </th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-cita>
+      <tr>
+        <td>{{ cita.id }}</td>
+        <td>
+          {{
+            cita.nombre_paciente || cita.paciente?.nombre || cita.id_paciente
+          }}
+        </td>
+        <td>{{ cita.tipo }}</td>
+        <td>{{ cita.horario | date : "short" }}</td>
+        <td>{{ cita.diagnostico }}</td>
+        <td>{{ cita.costo | currency : "MXN" }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text"
+            (click)="abrirModalEditar(cita)"
+            label="Editar"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-folder-open"
+            class="p-button-rounded p-button-secondary p-button-text"
+            label="Expediente"
+            (click)="verExpediente(cita.id_paciente)"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-folder-open"
+            class="p-button-rounded p-button-secondary p-button-text"
+            label="Receta"
+            (click)="irAReceta(cita.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No hay citas disponibles</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="Editar cita"
+    [(visible)]="showEditDialog"
+    [modal]="true"
+    [style]="{ width: '450px' }"
+    [baseZIndex]="10000"
+    [closable]="false"
+  >
+    <ng-container *ngIf="citaEditada">
+      <div class="p-fluid">
+        <!-- Campos del formulario -->
+        <div class="p-field">
+          <label for="tipo">Especialidad</label>
+          <input
+            id="tipo"
+            type="text"
+            pInputText
+            [(ngModel)]="citaEditada.tipo"
+            placeholder="Especialidad"
+          />
+        </div>
+        <!-- Resto de campos... -->
+        <div class="p-field">
+          <label for="consultorio">Consultorio</label>
+          <input
+            id="consultorio"
+            type="number"
+            pInputText
+            [(ngModel)]="citaEditada.id_consultorio"
+            min="1"
+          />
+        </div>
+        <div class="p-field">
+          <label for="medico">Médico</label>
+          <input
+            id="medico"
+            type="number"
+            pInputText
+            [(ngModel)]="citaEditada.id_medico"
+            min="1"
+          />
+        </div>
+        <div class="p-field">
+          <label for="paciente">Paciente</label>
+          <input
+            id="paciente"
+            type="number"
+            pInputText
+            [(ngModel)]="citaEditada.id_paciente"
+            min="1"
+            disabled
+          />
+        </div>
+        <div class="p-field">
+          <label for="horario">Horario</label>
+          <input
+            id="horario"
+            type="datetime-local"
+            pInputText
+            [(ngModel)]="citaEditada.horario"
+          />
+        </div>
+        <div class="p-field">
+          <label for="diagnostico">Diagnóstico</label>
+          <textarea
+            id="diagnostico"
+            pInputTextarea
+            rows="3"
+            [(ngModel)]="citaEditada.diagnostico"
+            placeholder="Diagnóstico"
+          ></textarea>
+        </div>
+        <div class="p-field">
+          <label for="costo">Costo</label>
+          <input
+            id="costo"
+            type="number"
+            pInputText
+            [(ngModel)]="citaEditada.costo"
+            min="0"
+            step="0.01"
+          />
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        label="Cancelar"
+        icon="pi pi-times"
+        class="p-button-text"
+        (click)="showEditDialog = false"
+      ></button>
+      <button
+        pButton
+        label="Guardar"
+        icon="pi pi-check"
+        (click)="guardarCambios()"
+      ></button>
+    </ng-template>
+  </p-dialog>
+
+  <div class="logout-btn">
+    <button
+      pButton
+      type="button"
+      label="Cerrar sesión"
+      icon="pi pi-sign-out"
+      (click)="onCerrarSesion()"
+    ></button>
+  </div>
+</div>

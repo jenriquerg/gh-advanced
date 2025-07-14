@@ -46,7 +46,7 @@ export class RegisterComponent {
   ) {}
 
   validatePassword(password: string): string | null {
-    if (password.length < 10)
+    if (password.length < 12)
       return 'La contraseña debe tener al menos 12 caracteres';
     if (!/[A-Za-z]/.test(password))
       return 'La contraseña debe contener al menos una letra';

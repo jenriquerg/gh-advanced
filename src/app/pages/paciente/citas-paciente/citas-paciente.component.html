@@ -37,20 +37,18 @@
       label="Nueva cita"
       icon="pi pi-plus"
       (click)="showDialog = true"
-      styleClass="p-button-success"
     ></p-button>
 
-    <p-button
-      label="Ver expediente"
+    <button
       icon="pi pi-folder-open"
-      styleClass="p-button-secondary"
+      class="p-button-secondary"
       (click)="goToExpediente()"
-    ></p-button>
+    >
+      Ver expediente </button>
 
     <p-button
       label="Cerrar Sesión"
       icon="pi pi-sign-out"
-      class="p-button-text"
       type="button"
       (click)="onCerrarSesion()"
     ></p-button>

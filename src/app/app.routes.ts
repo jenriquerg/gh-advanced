@@ -6,7 +6,8 @@ import { CitasEnfermeroComponent } from './pages/enfermero/citas-enfermero/citas
 import { CitasPacienteComponent } from './pages/paciente/citas-paciente/citas-paciente.component';
 import { ExpedienteComponent } from './pages/expediente/expediente/expediente.component';
 import { LlenarControlComponent } from './pages/control/llenar-control/llenar-control.component';
-
+import { CitasMedicoComponent } from './pages/medico/citas-medico/citas-medico.component';
+import { RecetasComponent } from './pages/medico/recetas/recetas.component';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -17,27 +18,39 @@ export const routes: Routes = [
     path: 'citas-paciente',
     component: CitasPacienteComponent,
     canActivate: [authGuard],
-    data: { permiso: 'get_consultas_paciente' }
+    data: { permiso: 'get_consultas_paciente' },
+  },
+  {
+    path: 'citas-medico',
+    component: CitasMedicoComponent,
+    canActivate: [authGuard],
+    data: { permiso: 'get_consultas_medico' },
   },
   {
     path: 'citas-enfermero',
     component: CitasEnfermeroComponent,
     canActivate: [authGuard],
-    data: { permiso: 'get_consultas_medico' }
+    data: { permiso: 'get_consultas_medico' },
   },
   {
-    path: 'expediente',
+    path: 'recetas/:id',
+    component: RecetasComponent,
+    canActivate: [authGuard],
+    data: { permiso: 'add_receta' },
+  },
+  {
+    path: 'expediente/:id',
     component: ExpedienteComponent,
     canActivate: [authGuard],
-    data: { permiso: 'get_expediente' }
+    data: { permiso: 'get_expediente' },
   },
   {
     path: 'llenar-control/:id',
     component: LlenarControlComponent,
     canActivate: [authGuard],
-    data: { permiso: 'add_control' }
+    data: { permiso: 'add_control' },
   },
 
   // fallback
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
 ];

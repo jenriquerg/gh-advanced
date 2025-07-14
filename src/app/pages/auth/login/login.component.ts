@@ -57,6 +57,8 @@ export class LoginComponent {
             this.router.navigate(['/citas-paciente']);
           } else if (tipo === 'enfermero') {
             this.router.navigate(['/citas-enfermero']);
+          } else if (tipo === 'medico') {
+            this.router.navigate(['/citas-medico']);
           } else {
             this.error = 'Rol no reconocido';
           }

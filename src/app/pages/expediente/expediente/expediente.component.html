@@ -1,1 +1,102 @@
-<p>expediente works!</p>
+<div class="expediente-container">
+  <h1>Expediente</h1>
+  <p-card *ngIf="expediente; else errorTemplate">
+    <div class="expediente-grid">
+      <p-panel header="Información General">
+        <div class="p-field">
+          <label><strong>Grupo Sanguíneo:</strong></label>
+          <p-tag value="{{ expediente.grupo_sanguineo }}" severity="info"></p-tag>
+        </div>
+        <div class="p-field">
+          <label><strong>Fecha de Actualización:</strong></label>
+          <span>{{ expediente.fecha_actualizacion | date: 'longDate' }}</span>
+        </div>
+      </p-panel>
+
+      <p-panel header="Antecedentes">
+        <div class="p-field">
+          <label><strong>Antecedentes personales:</strong></label>
+          <p>{{ expediente.antecedentes_personales }}</p>
+        </div>
+        <div class="p-field">
+          <label><strong>Antecedentes familiares:</strong></label>
+          <p>{{ expediente.antecedentes_familiares }}</p>
+        </div>
+      </p-panel>
+
+      <p-panel header="Historial Médico">
+        <div class="p-field">
+          <label><strong>Alergias:</strong></label>
+          <p>{{ expediente.alergias }}</p>
+        </div>
+        <div class="p-field">
+          <label><strong>Enfermedades crónicas:</strong></label>
+          <p>{{ expediente.enfermedades_cronicas }}</p>
+        </div>
+        <div class="p-field">
+          <label><strong>Medicamentos habituales:</strong></label>
+          <p>{{ expediente.medicamentos_habituales }}</p>
+        </div>
+      </p-panel>
+
+      <p-panel header="Vacunas">
+        <p>{{ expediente.vacunas }}</p>
+      </p-panel>
+
+      <p-panel header="Notas Generales">
+        <p>{{ expediente.notas_generales || 'Sin notas' }}</p>
+      </p-panel>
+    </div>
+  </p-card>
+
+  <div class="buttons-container">
+      <button *ngIf="canEdit" pButton label="Editar expediente" icon="pi pi-pencil" (click)="openEditModal()"></button>
+        <button pButton label="Regresar" icon="pi pi-arrow-left" (click)="regresar()" class="mb-3"></button>
+    </div>
+
+
+  <ng-template #errorTemplate>
+    <p class="text-red-600 p-3 bg-red-100 border border-red-300 rounded">
+      {{ error }}
+    </p>
+  </ng-template>
+
+  <!-- MODAL -->
+  <p-dialog header="Editar Expediente" [(visible)]="showEditModal" [modal]="true" [style]="{ width: '500px' }">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Alergias</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.alergias"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Antecedentes personales</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.antecedentes_personales"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Antecedentes familiares</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.antecedentes_familiares"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Enfermedades crónicas</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.enfermedades_cronicas"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Medicamentos habituales</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.medicamentos_habituales"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Vacunas</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.vacunas"></textarea>
+      </div>
+      <div class="p-field">
+        <label>Notas generales</label>
+        <textarea pInputTextarea rows="2" [(ngModel)]="editableExpediente.notas_generales"></textarea>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button pButton label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="showEditModal = false"></button>
+      <button pButton label="Guardar" icon="pi pi-check" (click)="guardarCambios()"></button>
+    </ng-template>
+  </p-dialog>
+</div>

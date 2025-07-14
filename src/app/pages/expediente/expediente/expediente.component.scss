@@ -1,0 +1,53 @@
+.expediente-container {
+  padding: 1rem;
+
+  p-card {
+    max-width: 100%;
+  }
+
+  .expediente-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  p-panel {
+    height: 100%;
+  }
+
+  .p-field {
+    margin-bottom: 0.75rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  font-style: normal;
+}
+
+button {
+  margin-right: 0.5rem;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover{
+  opacity: 0.2;
+}
+
+.buttons-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
