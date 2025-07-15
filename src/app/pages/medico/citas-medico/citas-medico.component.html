@@ -63,6 +63,13 @@
             pButton
             icon="pi pi-folder-open"
             class="p-button-rounded p-button-secondary p-button-text"
+            label="Control"
+            (click)="verControl(cita.id_paciente)"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-folder-open"
+            class="p-button-rounded p-button-secondary p-button-text"
             label="Receta"
             (click)="irAReceta(cita.id)"
           ></button>
@@ -78,6 +85,7 @@
   </p-table>
 
   <p-dialog
+    class="dialog"
     header="Editar cita"
     [(visible)]="showEditDialog"
     [modal]="true"
@@ -117,17 +125,6 @@
             pInputText
             [(ngModel)]="citaEditada.id_medico"
             min="1"
-          />
-        </div>
-        <div class="p-field">
-          <label for="paciente">Paciente</label>
-          <input
-            id="paciente"
-            type="number"
-            pInputText
-            [(ngModel)]="citaEditada.id_paciente"
-            min="1"
-            disabled
           />
         </div>
         <div class="p-field">

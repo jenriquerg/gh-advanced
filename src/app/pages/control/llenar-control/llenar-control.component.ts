@@ -14,6 +14,7 @@ import {
 import { DialogModule } from 'primeng/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-llenar-control',
@@ -42,7 +43,8 @@ export class LlenarControlComponent {
     private controlService: ControlService,
     private messageService: MessageService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+      private location: Location,
   ) {}
 
   ngOnInit() {
@@ -69,7 +71,7 @@ export class LlenarControlComponent {
   }
 
   gotoBack() {
-    this.router.navigate(['/citas-enfermero']);
+    this.location.back();
   }
 
   onCerrarSesion() {

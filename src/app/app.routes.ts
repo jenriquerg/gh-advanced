@@ -39,6 +39,12 @@ export const routes: Routes = [
     data: { permiso: 'add_receta' },
   },
   {
+  path: 'expediente',
+  component: ExpedienteComponent,
+  canActivate: [authGuard],
+  data: { permiso: 'get_expediente' },
+},
+  {
     path: 'expediente/:id',
     component: ExpedienteComponent,
     canActivate: [authGuard],

@@ -27,7 +27,6 @@ export class ConsultaService {
   }
 
   crearConsulta(payload: Omit<Consulta, 'id'>): Observable<Consulta> {
-    console.log(payload);
     return this.http
       .post<{ data: Consulta[] }>(this.baseUrl, payload)
       .pipe(map(res => res.data[0]));

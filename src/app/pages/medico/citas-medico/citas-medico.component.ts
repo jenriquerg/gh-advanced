@@ -133,23 +133,33 @@ export class CitasMedicoComponent {
   }
 
   verExpediente(idPaciente: number) {
-  const token = localStorage.getItem('access_token');
-  const payload = token ? this.decodeToken(token) : null;
+    const token = localStorage.getItem('access_token');
+    const payload = token ? this.decodeToken(token) : null;
 
-  if (payload?.permisos?.includes('update_expediente')) {
-    this.router.navigate(['/expediente', idPaciente]);
-  } else {
-    this.router.navigate(['/expediente']);
+    if (payload?.permisos?.includes('update_expediente')) {
+      this.router.navigate(['/expediente', idPaciente]);
+    } else {
+      this.router.navigate(['/expediente']);
+    }
   }
-}
 
-irAReceta(idCita: number) {
-  const token = localStorage.getItem('access_token');
-  const payload = token ? this.decodeToken(token) : null;
+  verControl(idPaciente: number) {
+    const token = localStorage.getItem('access_token');
+    const payload = token ? this.decodeToken(token) : null;
 
-  if (payload?.permisos?.includes('add_receta')) {
-    this.router.navigate(['/recetas', idCita]);
+    if (payload?.permisos?.includes('add_control')) {
+      this.router.navigate(['/llenar-control', idPaciente]);
+    } else {
+      this.router.navigate(['/llenar-control']);
+    }
   }
-}
 
+  irAReceta(idCita: number) {
+    const token = localStorage.getItem('access_token');
+    const payload = token ? this.decodeToken(token) : null;
+
+    if (payload?.permisos?.includes('add_receta')) {
+      this.router.navigate(['/recetas', idCita]);
+    }
+  }
 }
